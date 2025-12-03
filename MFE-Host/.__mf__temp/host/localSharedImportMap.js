@@ -13,6 +13,11 @@
           let pkg = await import("__mf__virtual/host__prebuild__react_mf_2_dom__prebuild__.js");
             return pkg;
         }
+      ,
+        "react-router-dom": async () => {
+          let pkg = await import("__mf__virtual/host__prebuild__react_mf_2_router_mf_2_dom__prebuild__.js");
+            return pkg;
+        }
       
     }
       const usedShared = {
@@ -41,7 +46,7 @@
               }
             },
             shareConfig: {
-              singleton: false,
+              singleton: true,
               requiredVersion: "^19.2.0",
               
             }
@@ -71,14 +76,60 @@
               }
             },
             shareConfig: {
-              singleton: false,
+              singleton: true,
               requiredVersion: "^19.2.0",
+              
+            }
+          }
+        ,
+          "react-router-dom": {
+            name: "react-router-dom",
+            version: "7.10.0",
+            scope: ["default"],
+            loaded: false,
+            from: "host",
+            async get () {
+              if (false) {
+                throw new Error(`Shared module '${"react-router-dom"}' must be provided by host`);
+              }
+              usedShared["react-router-dom"].loaded = true
+              const {"react-router-dom": pkgDynamicImport} = importMap
+              const res = await pkgDynamicImport()
+              const exportModule = {...res}
+              // All npm packages pre-built by vite will be converted to esm
+              Object.defineProperty(exportModule, "__esModule", {
+                value: true,
+                enumerable: false
+              })
+              return function () {
+                return exportModule
+              }
+            },
+            shareConfig: {
+              singleton: true,
+              requiredVersion: "^7.10.0",
               
             }
           }
         
     }
       const usedRemotes = [
+                {
+                  entryGlobalName: "todo",
+                  name: "todo",
+                  type: "module",
+                  entry: "https://mfe-remote-1.vercel.app/remoteEntry.js",
+                  shareScope: "default",
+                }
+          ,
+                {
+                  entryGlobalName: "login",
+                  name: "login",
+                  type: "module",
+                  entry: "https://mfe-remote-2.vercel.app/remoteEntry.js",
+                  shareScope: "default",
+                }
+          
       ]
       export {
         usedShared,

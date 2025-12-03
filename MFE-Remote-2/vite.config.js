@@ -11,7 +11,11 @@ export default defineConfig({
       exposes: {
         "./Login": "./src/App.jsx",
       },
-      shared: ["react", "react-dom"],
+      shared: {
+        react: { singleton: true, eager: true },
+        "react-dom": { singleton: true, eager: true },
+        "react-router-dom": { singleton: true, eager: true }
+      }
     })
   ],
   build: {

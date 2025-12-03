@@ -11,15 +11,19 @@ export default defineConfig({
         todo: {
           type: 'module', 
           name: 'todo',
-          entry: 'https://mfe-remote-1.vercel.app/assets/remoteEntry.js',
+          entry: 'https://mfe-remote-1.vercel.app/remoteEntry.js',
         },
         login :{
           type:'module',
           name:'login',
-          entry:'https://mfe-remote-2.vercel.app/assets/remoteEntry.js'
+          entry:'https://mfe-remote-2.vercel.app/remoteEntry.js'
         }
       },
-      shared: ['react', 'react-dom'],
+      shared: {
+        react: { singleton: true, eager: true },
+        "react-dom": { singleton: true, eager: true },
+        "react-router-dom": { singleton: true, eager: true }
+      }
     }),
   ],
   server: {
