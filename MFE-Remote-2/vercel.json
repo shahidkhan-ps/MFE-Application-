@@ -1,0 +1,10 @@
+{
+  "routes": [
+    {
+      "src": "/(remoteEntry.js)",
+      "headers": {
+        "Content-Type": "application/javascript"
+      }
+    }
+  ]
+}

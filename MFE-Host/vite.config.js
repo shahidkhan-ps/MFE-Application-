@@ -11,12 +11,12 @@ export default defineConfig({
         todo: {
           type: 'module', 
           name: 'todo',
-          entry: 'http://localhost:5001/remoteEntry.js',
+          entry: 'https://mfe-remote-1.vercel.app/assets/remoteEntry.js',
         },
         login :{
           type:'module',
           name:'login',
-          entry:'http://localhost:5002/remoteEntry.js'
+          entry:'https://mfe-remote-2.vercel.app/assets/remoteEntry.js'
         }
       },
       shared: ['react', 'react-dom'],
