@@ -1,10 +1,10 @@
 import React from 'react'
 import Login from './components/Login.jsx'
 
-function App() {
+function App({onSuccess}) {
   return (
     <div>
-      <Login />
+      <Login onSuccess={onSuccess}/>
     </div>
   )
 }

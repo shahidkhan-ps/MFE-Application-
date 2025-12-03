@@ -1,21 +1,34 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { federation } from "@module-federation/vite";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { federation } from '@module-federation/vite';
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     federation({
-      name:"host",
-      remotes:{
-        login:"login@https://mfe-remote-2.vercel.app/remoteEntry.js",
-        todo:"todo@https://mfe-remote-1.vercel.app/remoteEntry.js"
+      name: 'host',
+      remotes: {
+        todo: {
+          type: 'module', 
+          name: 'todo',
+          entry: 'http://localhost:5001/remoteEntry.js',
+        },
+        login :{
+          type:'module',
+          name:'login',
+          entry:'http://localhost:5002/remoteEntry.js'
+        }
       },
-      shared:["react","react-dom"]
-    })
+      shared: ['react', 'react-dom'],
+    }),
   ],
-  build:{
-    target:"esnext",
-}
-})
+  server: {
+    port: 5000,
+    strictPort: true,
+  },
+  build: {
+    target: 'esnext',
+    modulePreload: false,
+    minify: false,
+  },
+});

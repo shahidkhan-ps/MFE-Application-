@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import useLocalStorage from '../customHooks/useLocalStorage.jsx'
 
-function Login() {
-    const [isLoggedin,setIsLoggedin]=useLocalStorage('loggedIn',false)
+function Login({onSuccess}) {
+    const [isLoggedin,setIsLoggedin]=useLocalStorage('isLoggedIn',false)
     const trueValues={
         name:"shahid",
         email:"shahid1692004@gmail.com",
@@ -55,6 +55,7 @@ function Login() {
             setErrors(errors)
             return;
         }
+        onSuccess()
         setIsLoggedin(true)
     }
 
