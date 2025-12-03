@@ -16,6 +16,11 @@ export default defineConfig({
     })  
   ],
   build:{
-    target:"esnext"
+    target:"esnext",
+    rollupOptions: {
+    output: {
+      format: "system"   // required for module federation
+    }
+  }
   }
 })

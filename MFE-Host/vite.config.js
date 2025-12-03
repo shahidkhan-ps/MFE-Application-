@@ -1,16 +1,16 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { federation } from '@module-federation/vite'
+import { federation } from "@module-federation/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     federation({
-      name:"login",
-      filename:"remoteEntry.js",
-      exposes:{
-        "./Login":"./src/App.jsx",
+      name:"host",
+      remotes:{
+        login:"login@https://mfe-remote-2.vercel.app/remoteEntry.js",
+        todo:"todo@https://mfe-remote-1.vercel.app/remoteEntry.js"
       },
       shared:["react","react-dom"]
     })
@@ -18,9 +18,9 @@ export default defineConfig({
   build:{
     target:"esnext",
     rollupOptions: {
-    output: {
-      format: "system"   // required for module federation
-    }
+      output: {
+        format: 'system',  // or 'umd'
+      }
   }
-  }
+}
 })
